@@ -11,7 +11,7 @@ set /p sourcetimestamp=<"%source%\timestamp"
 echo Source timestamp is %sourcetimestamp%
 
 rem Get the timestamp of the most recently modified file in the destination
-for /f "delims=" %%a in ('powershell -Command "Get-ChildItem -Path '%destination%' -Recurse | Where-Object {!$_.PSIsContainer} | Sort-Object LastWriteTime -Descending | Select-Object -First 1 LastWriteTime | ForEach-Object {$_.LastWriteTime.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')}"') do set "destinationtimestamp=%%a"
+for /f "delims=" %%a in ('powershell -Command "Get-ChildItem -Path '%destination%' -Recurse | Where-Object {!$_.PSIsContainer} | Sort-Object LastWriteTime -Descending | Select-Object -First 1 LastWriteTime | ForEach-Object {$_.LastWriteTime.ToString('yyyy-MM-ddTHH:mm:ssZ')}"') do set "destinationtimestamp=%%a"
 echo Destination timestamp is: %destinationtimestamp%
 
 echo Comparing timestamps...
